@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.cursoandroidstudio.rexcryptoeducation.fragment.CourseFragment;
-import com.cursoandroidstudio.rexcryptoeducation.fragment.Audio_ConfigurationFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -51,16 +50,6 @@ public class ContentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_audio_configuration:
-
-                Audio_ConfigurationFragment audio_configurationFragment = new Audio_ConfigurationFragment();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.nav_host_fragment, audio_configurationFragment)
-                        .addToBackStack(null)
-                        .commit();
-
-                return true;
             case R.id.action_log_out:
 
                 Intent intent = new Intent(getApplicationContext(), InitialActivity.class);
