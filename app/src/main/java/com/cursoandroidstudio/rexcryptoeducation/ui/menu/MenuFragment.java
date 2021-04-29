@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
-import com.cursoandroidstudio.rexcryptoeducation.adapter.CourseAdapter;
-import com.cursoandroidstudio.rexcryptoeducation.model.Course;
+import com.cursoandroidstudio.rexcryptoeducation.adapter.Course_PartAdapter;
+import com.cursoandroidstudio.rexcryptoeducation.model.Course_Part;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.List;
 public class MenuFragment extends Fragment {
 
     private RecyclerView recyclerCourses;
-    private List<Course> courses = new ArrayList<>();
+    private List<Course_Part> courses = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,7 +83,7 @@ public class MenuFragment extends Fragment {
         //define adapter
         prepareCourse();
 
-        CourseAdapter adapter = new CourseAdapter( courses );
+        Course_PartAdapter adapter = new Course_PartAdapter( courses );
         recyclerCourses.setAdapter( adapter );
 
         return v;
@@ -94,15 +92,15 @@ public class MenuFragment extends Fragment {
 
     public  void prepareCourse() {
 
-        Course c;
+        Course_Part c;
 
-        c = new Course(R.drawable.part1_image, "Parte I", "História e criação do Bitcoin");
+        c = new Course_Part(R.drawable.part1_image, "Parte I", "História e criação do Bitcoin");
         this.courses.add(c);
 
-        c = new Course(R.drawable.part2_image, "Parte II", "O Blockchain");
+        c = new Course_Part(R.drawable.part2_image, "Parte II", "O Blockchain");
         this.courses.add(c);
 
-        c = new Course(R.drawable.part3_image, "Parte III", "Segurança do Bitcoin e como armazená-los");
+        c = new Course_Part(R.drawable.part3_image, "Parte III", "Segurança do Bitcoin e como armazená-los");
         this.courses.add(c);
 
     }

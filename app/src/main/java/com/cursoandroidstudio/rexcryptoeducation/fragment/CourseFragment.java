@@ -1,22 +1,22 @@
 package com.cursoandroidstudio.rexcryptoeducation.fragment;
 
-import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.cursoandroidstudio.rexcryptoeducation.Content;
 import com.cursoandroidstudio.rexcryptoeducation.R;
 
 import java.util.concurrent.TimeUnit;
@@ -36,8 +36,10 @@ public class CourseFragment extends Fragment {
     private ImageView imageRewind, imagePlay, imagePause, imageForward;
 
     private MediaPlayer mediaPlayer;
-    Handler handler = new Handler();
-    Runnable runnable;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+
+    Content content;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,6 +87,9 @@ public class CourseFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_course, container, false);
 
+        Bundle dados = getArguments();
+        String part = dados.getString("parte_do_curso");
+
         textContent = v.findViewById(R.id.textContent);
 
         //Atribuir variáveis
@@ -96,8 +101,14 @@ public class CourseFragment extends Fragment {
         imagePause = v.findViewById(R.id.imagePause);
         imageForward = v.findViewById(R.id.imageForward);
 
+        content = new Content();
+
+        textContent.setText(content.courseText(part));
+
+        int audio = content.courseAudio(part);
+
         //Inicializar media player
-        mediaPlayer = MediaPlayer.create(v.getContext(),R.raw.teste);
+        mediaPlayer = MediaPlayer.create(v.getContext(), audio);
 
         //Inicializar runnable
         runnable = new Runnable() {
@@ -221,18 +232,6 @@ public class CourseFragment extends Fragment {
             }
         });
 
-
-        textContent.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur efficitur tortor a dictum. Vestibulum molestie quam vel enim semper, sit amet tristique est iaculis. Morbi aliquet lorem purus, et fermentum elit ultrices in. Aenean suscipit erat dapibus lectus sollicitudin vestibulum. Sed in urna sed ante dapibus lobortis. Nullam scelerisque convallis tortor non semper. Quisque vitae tellus felis. Nullam accumsan elit justo. Praesent condimentum venenatis nibh, tincidunt finibus libero dapibus et. Pellentesque ut euismod ligula, ac pellentesque risus. Sed quam sem, vulputate porttitor molestie sit amet, posuere non dolor. Suspendisse ut vehicula enim, at blandit nisi. Nulla tempus, nisi eget molestie rutrum, lacus ligula lobortis massa, ac facilisis sem sem eu nulla. Cras sed commodo odio.\n" +
-                "\n" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar ante sit amet molestie posuere. In hac habitasse platea dictumst. Quisque et tempus neque, pretium pharetra enim. Pellentesque id tincidunt ex, sit amet placerat lorem. Nunc accumsan eleifend neque, id facilisis orci pretium suscipit. Nullam at ullamcorper erat.\n" +
-                "\n" +
-                "Duis nec dictum quam. Curabitur venenatis iaculis lobortis. Duis a faucibus felis, non auctor massa. Suspendisse mattis nec tortor volutpat ornare. Mauris placerat magna eu purus luctus, eu lobortis nisi semper. Etiam dignissim et quam sit amet posuere. Donec ornare arcu arcu, non dictum mi porta a. Pellentesque ultricies velit id ipsum laoreet, ac dapibus erat volutpat. Curabitur quis dui mauris. Aenean consectetur quis ante a vulputate. Mauris lectus dui, posuere vitae arcu at, vulputate rhoncus mauris.\n" +
-                "\n" +
-                "Praesent maximus faucibus libero, quis faucibus mi porttitor id. Nullam sit amet sapien volutpat, sagittis dui eget, feugiat ligula. Aenean non turpis imperdiet, efficitur elit et, dictum quam. Curabitur feugiat scelerisque varius. Morbi ut tortor et quam pharetra sollicitudin in sit amet est. Sed non iaculis sapien, eu efficitur erat. Curabitur ac nisl ipsum. Morbi mauris lacus, sodales sit amet justo vitae, efficitur viverra dui.\n" +
-                "\n" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel egestas magna. Duis scelerisque purus non metus facilisis, sit amet gravida enim ornare. Aliquam nec convallis est, quis venenatis augue. Suspendisse potenti. Praesent quis felis egestas, luctus sem non, pulvinar mi. Curabitur lobortis sed velit quis egestas. Nunc urna mauris, malesuada sed varius quis, luctus at mauris. Vivamus a justo sed sem pulvinar efficitur quis pharetra lectus. Suspendisse mollis cursus blandit. Etiam eu varius urna. Nullam enim lorem, interdum ut auctor sed, ornare eu lorem. Proin tempus scelerisque dignissim. Mauris vel neque ac libero vehicula iaculis in sed dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        );
-
         return v;
     }
 
@@ -241,6 +240,24 @@ public class CourseFragment extends Fragment {
                 , TimeUnit.MILLISECONDS.toMinutes(duration)
                 , TimeUnit.MILLISECONDS.toSeconds(duration) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if( mediaPlayer != null && mediaPlayer.isPlaying() ){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if ( mediaPlayer.isPlaying() ){
+            mediaPlayer.pause();
+        }
     }
 
 }

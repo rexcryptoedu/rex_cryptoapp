@@ -33,18 +33,19 @@ public class Register2Activity extends AppCompatActivity {
 
         editUserName = findViewById(R.id.editEmail);
 
-        /*
+        userName = editUserName.getText().toString();
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), .class);
+                Intent intent = new Intent(getApplicationContext(), InitialActivity.class);
 
                 startActivity( intent );
 
             }
         });
-        */
+
 
         buttonBackRegister.setOnClickListener(new View.OnClickListener() {
             @Override

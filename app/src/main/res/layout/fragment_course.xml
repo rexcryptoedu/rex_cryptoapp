@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<ScrollView
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
--->
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragment.CourseFragment">
+    tools:context=".fragment.CourseFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardContent"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@color/light_gray_II"
         app:cardCornerRadius="36dp"
         app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/LinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,18 +28,25 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/light_gray_II"
             android:fadeScrollbars="false"
-            android:padding="16dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="20dp"
             android:scrollbarThumbVertical="@color/blue">
 
             <TextView
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/light_gray_II"
                 android:fontFamily="@font/ubuntu_light"
-                android:padding="6dp"
+                android:justificationMode="inter_word"
+                android:paddingRight="14dp"
                 android:text="TextView"
                 android:textColor="@color/dark_gray" />
+
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
@@ -53,14 +57,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:padding="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/LinearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardContent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textPosition"
@@ -93,11 +97,11 @@
         android:id="@+id/LinearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LinearLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imageRewind"
@@ -129,23 +133,20 @@
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="63dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/avançar"
         android:textAllCaps="false"
         android:textSize="36sp"
         app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LinearLayout2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
-</ScrollView>
--->

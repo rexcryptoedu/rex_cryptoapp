@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/ubuntu_bold"
@@ -24,33 +24,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageUser"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/user"
+        app:civ_border_color="@color/blue"
+        app:civ_border_width="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/editUserNameAlter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textProfile">
-
-        <ImageView
-            android:id="@+id/imageContour"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/contour_image" />
-
-        <ImageView
-            android:id="@+id/imageUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/user" />
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textProfile" />
 
     <TextView
         android:id="@+id/textUserNameAlter"
@@ -68,11 +59,11 @@
         android:id="@+id/editUserNameAlter"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
@@ -81,9 +72,10 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editEmailAlter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textEmailAlter"
@@ -94,18 +86,18 @@
         android:text="@string/email"
         android:textColor="@color/blue"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editEmailRegisterAlter"
-        app:layout_constraintStart_toStartOf="@+id/editEmailRegisterAlter" />
+        app:layout_constraintBottom_toTopOf="@+id/editEmailAlter"
+        app:layout_constraintStart_toStartOf="@+id/editEmailAlter" />
 
     <EditText
-        android:id="@+id/editEmailRegisterAlter"
+        android:id="@+id/editEmailAlter"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
@@ -114,9 +106,10 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editPasswordAlter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUserNameAlter" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textPasswordAlter"
@@ -134,11 +127,11 @@
         android:id="@+id/editPasswordAlter"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
@@ -147,27 +140,28 @@
         android:inputType="textPersonName|textPassword"
         android:textColorHint="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEmailRegisterAlter" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/ubuntu_bold"
         android:text="@string/salvar"
         android:textAllCaps="false"
         android:textSize="28sp"
         app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPasswordAlter" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

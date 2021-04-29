@@ -25,13 +25,17 @@ public class ContentActivity extends AppCompatActivity {
 
         //Recuperar dados
         Bundle dados = getIntent().getExtras();
-        String part = dados.getString("parte");
+        String part = dados.getString("parte_do_curso");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setTitle(part);
 
         CourseFragment courseFragment = new CourseFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("parte_do_curso", part);
+        courseFragment.setArguments(bundle);
 
         //Configurar objeto para o Fragmento
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -42,7 +46,7 @@ public class ContentActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_content, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
