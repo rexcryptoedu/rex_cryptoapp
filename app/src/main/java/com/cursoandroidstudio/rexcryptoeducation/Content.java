@@ -25,7 +25,6 @@ public class Content {
     public static String courseText(String coursePart) {
         
         String text = "";
-        String audio = "";
         
         switch (coursePart) {
             case "Parte I":
@@ -68,5 +67,6 @@ public class Content {
         return text;
 
     }
+
 
 }

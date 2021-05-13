@@ -29,8 +29,6 @@ public class ContentActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle(part);
-
         CourseFragment courseFragment = new CourseFragment();
 
         Bundle bundle = new Bundle();

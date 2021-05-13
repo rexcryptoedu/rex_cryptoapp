@@ -1,7 +1,6 @@
 package com.cursoandroidstudio.rexcryptoeducation.adapter;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
 import com.cursoandroidstudio.rexcryptoeducation.activity.ContentActivity;
-import com.cursoandroidstudio.rexcryptoeducation.fragment.CourseFragment;
 import com.cursoandroidstudio.rexcryptoeducation.model.Course_Part;
 
 import java.util.List;

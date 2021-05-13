@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -68,7 +67,6 @@
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
-        android:hint="Nome do usuário"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="20sp"
@@ -102,7 +100,6 @@
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
-        android:hint="emailcadastrado@gmail.com"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="20sp"
@@ -136,7 +133,6 @@
         android:ems="10"
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
-        android:hint="senha123"
         android:inputType="textPersonName|textPassword"
         android:textColorHint="@color/black"
         android:textSize="20sp"

@@ -1,17 +1,19 @@
 package com.cursoandroidstudio.rexcryptoeducation.fragment;
 
 import android.media.MediaPlayer;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -34,6 +36,7 @@ public class CourseFragment extends Fragment {
     private TextView textPosition, textDuration;
     private SeekBar seekPosition;
     private ImageView imageRewind, imagePlay, imagePause, imageForward;
+    private Button buttonQuestion1;
 
     private MediaPlayer mediaPlayer;
     private Handler handler = new Handler();
@@ -90,6 +93,8 @@ public class CourseFragment extends Fragment {
         Bundle dados = getArguments();
         String part = dados.getString("parte_do_curso");
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(part);
+
         textContent = v.findViewById(R.id.textContent);
 
         //Atribuir variáveis
@@ -100,6 +105,8 @@ public class CourseFragment extends Fragment {
         imagePlay = v.findViewById(R.id.imagePlay);
         imagePause = v.findViewById(R.id.imagePause);
         imageForward = v.findViewById(R.id.imageForward);
+
+        buttonQuestion1 = v.findViewById(R.id.buttonQuestion1);
 
         content = new Content();
 
@@ -229,6 +236,25 @@ public class CourseFragment extends Fragment {
                 imagePlay.setVisibility(View.VISIBLE);
                 //Definir o media player para a posição inicial
                 mediaPlayer.seekTo(0);
+            }
+        });
+
+        buttonQuestion1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Question1Fragment question1Fragment = new Question1Fragment();
+
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameContent, question1Fragment );
+
+                Bundle bundle = new Bundle();
+                bundle.putString("parte_do_curso", part);
+                question1Fragment.setArguments(bundle);
+
+                transaction.commit();
+
             }
         });
 

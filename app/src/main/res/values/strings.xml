@@ -37,4 +37,6 @@
     <string name="seu_perfil">Seu perfil</string>
     <string name="salvar">Salvar</string>
     <string name="avançar">Avançar</string>
+    <string name="responda">Responda</string>
+    <string name="sua_resposta">Digite sua resposta aqui</string>
 </resources>
