@@ -7,25 +7,6 @@
     android:layout_gravity="center"
     tools:context=".activity.LoginActivity">
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textSize="36sp"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
-
     <ImageView
         android:id="@+id/imageLogo"
         android:layout_width="0dp"
@@ -81,6 +62,25 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textSize="36sp"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <Button
         android:id="@+id/buttonBack"

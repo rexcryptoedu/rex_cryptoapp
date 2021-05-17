@@ -42,6 +42,7 @@ public class Register2Activity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), InitialActivity.class);
 
                 startActivity( intent );
+                finish();
 
             }
         });

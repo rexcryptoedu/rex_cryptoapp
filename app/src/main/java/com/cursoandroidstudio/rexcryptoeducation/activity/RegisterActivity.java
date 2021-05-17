@@ -44,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                 intent.putExtra("senha", senha);
 
                 startActivity( intent );
+                finish();
 
             }
         });

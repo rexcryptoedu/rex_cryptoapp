@@ -24,10 +24,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:paddingRight="12dp"
@@ -35,19 +34,29 @@
 
             <TextView
                 android:id="@+id/textAnswer"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="@string/responda"
                 android:textColor="@color/dark_gray"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/scrollViewQuestion1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/light_gray_II"
-                android:fadeScrollbars="false"
-                android:scrollbarThumbVertical="@color/blue">
+                android:fadeScrollbars="true"
+                android:scrollbarThumbVertical="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/LinearLayoutAlternatives"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textAnswer">
 
 
                 <TextView
@@ -66,59 +75,66 @@
 
             </ScrollView>
 
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/LinearLayoutAlternatives"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray_II"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                <RadioGroup
+                    android:id="@+id/radioGroupQuestion1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    <RadioGroup
-                        android:id="@+id/radioGroupQuestion1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radioQuestion1A"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="RadioButton" />
 
-                        <RadioButton
-                            android:id="@+id/radioQuestion1A"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="RadioButton" />
+                    <RadioButton
+                        android:id="@+id/radioQuestion1B"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="RadioButton" />
 
-                        <RadioButton
-                            android:id="@+id/radioQuestion1B"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="RadioButton" />
+                    <RadioButton
+                        android:id="@+id/radioQuestion1C"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="RadioButton" />
 
-                        <RadioButton
-                            android:id="@+id/radioQuestion1C"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="RadioButton" />
-
-                        <RadioButton
-                            android:id="@+id/radioQuestion1D"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="RadioButton" />
-                    </RadioGroup>
-                </LinearLayout>
-            </ScrollView>
-
-        </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/radioQuestion1D"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ubuntu_light"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="RadioButton" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/buttonQuestion2"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginEnd="24dp"

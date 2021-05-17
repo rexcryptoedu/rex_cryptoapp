@@ -56,6 +56,7 @@ public class Course_PartAdapter extends RecyclerView.Adapter<Course_PartAdapter.
                 intent.putExtra("parte_do_curso", part);
 
                 activity.startActivity( intent );
+                activity.finish();
             }
         });
 

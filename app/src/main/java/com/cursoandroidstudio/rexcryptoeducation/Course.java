@@ -1,6 +1,6 @@
 package com.cursoandroidstudio.rexcryptoeducation;
 
-public class Content {
+public class Course {
 
     public static int courseAudio(String coursePart) {
 

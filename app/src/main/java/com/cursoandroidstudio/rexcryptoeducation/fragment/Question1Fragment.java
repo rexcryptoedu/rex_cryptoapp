@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cursoandroidstudio.rexcryptoeducation.Question1;
@@ -27,9 +28,10 @@ public class Question1Fragment extends Fragment {
 
     private TextView textQuestion1;
     private RadioButton radioQuestion1A, radioQuestion1B, radioQuestion1C, radioQuestion1D;
+    private RadioGroup radioGroupQuestion1;
     private Button buttonQuestion2;
 
-    private String question1Content;
+    private String question1Content,answerQuestion1;
     private String[] questionAlternatives;
 
     Question1 question1;
@@ -82,13 +84,14 @@ public class Question1Fragment extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Questão 01");
 
-        textQuestion1 = v.findViewById(R.id.textQuestion1);
-        radioQuestion1A = v.findViewById(R.id.radioQuestion1A);
-        radioQuestion1B = v.findViewById(R.id.radioQuestion1B);
-        radioQuestion1C = v.findViewById(R.id.radioQuestion1C);
-        radioQuestion1D = v.findViewById(R.id.radioQuestion1D);
+        textQuestion1       = v.findViewById(R.id.textQuestion1);
+        radioQuestion1A     = v.findViewById(R.id.radioQuestion1A);
+        radioQuestion1B     = v.findViewById(R.id.radioQuestion1B);
+        radioQuestion1C     = v.findViewById(R.id.radioQuestion1C);
+        radioQuestion1D     = v.findViewById(R.id.radioQuestion1D);
+        radioGroupQuestion1 = v.findViewById(R.id.radioGroupQuestion1);
 
-        buttonQuestion2 = v.findViewById(R.id.buttonQuestion2);
+        buttonQuestion2     = v.findViewById(R.id.buttonQuestion2);
 
         Bundle dados = getArguments();
         String part = dados.getString("parte_do_curso");
@@ -104,6 +107,8 @@ public class Question1Fragment extends Fragment {
         radioQuestion1C.setText(questionAlternatives[2]);
         radioQuestion1D.setText(questionAlternatives[3]);
 
+        radioButtonQuestion1();
+
         buttonQuestion2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +121,7 @@ public class Question1Fragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("parte_do_curso", part);
+                bundle.putString("resposta_questao_1", answerQuestion1);
                 question2Fragment.setArguments(bundle);
 
                 transaction.commit();
@@ -125,4 +131,26 @@ public class Question1Fragment extends Fragment {
 
         return v;
     }
+
+    public void radioButtonQuestion1(){
+
+        radioGroupQuestion1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if( checkedId == R.id.radioQuestion1A ){
+                    answerQuestion1 = radioQuestion1A.getText().toString();
+                }else if( checkedId == R.id.radioQuestion1B ){
+                    answerQuestion1 = radioQuestion1B.getText().toString();
+                }else if( checkedId == R.id.radioQuestion1C ){
+                    answerQuestion1 = radioQuestion1C.getText().toString();
+                }else if( checkedId == R.id.radioQuestion1D ){
+                    answerQuestion1 =  radioQuestion1D.getText().toString();
+                }
+
+            }
+        });
+
+    }
+
 }

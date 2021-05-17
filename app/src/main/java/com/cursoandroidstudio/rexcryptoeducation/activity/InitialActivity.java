@@ -28,6 +28,7 @@ public class InitialActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
 
                 startActivity( intent );
+                finish();
 
             }
         });
@@ -39,6 +40,7 @@ public class InitialActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
 
                 startActivity( intent );
+                finish();
 
             }
         });

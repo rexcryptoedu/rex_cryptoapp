@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.cursoandroidstudio.rexcryptoeducation.Content;
+import com.cursoandroidstudio.rexcryptoeducation.Course;
 import com.cursoandroidstudio.rexcryptoeducation.R;
 
 import java.util.concurrent.TimeUnit;
@@ -42,7 +42,7 @@ public class CourseFragment extends Fragment {
     private Handler handler = new Handler();
     private Runnable runnable;
 
-    Content content;
+    Course course;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -108,11 +108,11 @@ public class CourseFragment extends Fragment {
 
         buttonQuestion1 = v.findViewById(R.id.buttonQuestion1);
 
-        content = new Content();
+        course = new Course();
 
-        textContent.setText(content.courseText(part));
+        textContent.setText(course.courseText(part));
 
-        int audio = content.courseAudio(part);
+        int audio = course.courseAudio(part);
 
         //Inicializar media player
         mediaPlayer = MediaPlayer.create(v.getContext(), audio);

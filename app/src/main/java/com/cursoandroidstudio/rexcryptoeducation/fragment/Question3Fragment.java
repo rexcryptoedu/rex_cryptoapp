@@ -1,6 +1,5 @@
 package com.cursoandroidstudio.rexcryptoeducation.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,35 +8,30 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.Question2;
+import com.cursoandroidstudio.rexcryptoeducation.Question3;
 import com.cursoandroidstudio.rexcryptoeducation.R;
-import com.cursoandroidstudio.rexcryptoeducation.activity.InitialActivity;
-import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Question2Fragment#newInstance} factory method to
+ * Use the {@link Question3Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Question2Fragment extends Fragment {
+public class Question3Fragment extends Fragment {
 
-    private TextView textQuestion2;
-    private Button buttonQuestion3;
-    private EditText editAnswerQuestion2;
+    private TextView textQuestion3;
+    private Button buttonFeedback;
+    private EditText editAnswerQuestion3;
 
-    private String question2Content;
-    private String[] answerQuestion2;
+    private String question3Content,answerQuestion3;
 
-    Question2 question2;
+    Question3 question3;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,7 +42,7 @@ public class Question2Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Question2Fragment() {
+    public Question3Fragment() {
         // Required empty public constructor
     }
 
@@ -58,11 +52,11 @@ public class Question2Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Question2Fragment.
+     * @return A new instance of fragment Question3Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Question2Fragment newInstance(String param1, String param2) {
-        Question2Fragment fragment = new Question2Fragment();
+    public static Question3Fragment newInstance(String param1, String param2) {
+        Question3Fragment fragment = new Question3Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -83,41 +77,43 @@ public class Question2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_question2, container, false);
+        View v = inflater.inflate(R.layout.fragment_question3, container, false);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Questão 02");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Questão 03");
 
-        textQuestion2   = v.findViewById(R.id.textQuestion2);
-        buttonQuestion3 = v.findViewById(R.id.buttonQuestion3);
-        editAnswerQuestion2 = v.findViewById(R.id.editAnswerQuestion2);
+        textQuestion3 = v.findViewById(R.id.textQuestion3);
+        buttonFeedback = v.findViewById(R.id.buttonFeedback);
+        editAnswerQuestion3 = v.findViewById(R.id.editAnswerQuestion3);
 
         Bundle dados = getArguments();
         String part = dados.getString("parte_do_curso");
         String answerQuestion1 = dados.getString("resposta_questao_1");
+        String[] answerQuestion2 = dados.getStringArray("resposta_questao_2");
 
-        answerQuestion2 = editAnswerQuestion2.getText().toString().split(",");
+        question3 = new Question3();
 
-        question2 = new Question2();
+        question3Content =  question3.question3Content(part);
 
-        question2Content =  question2.question2Content(part);
+        textQuestion3.setText(question3Content);
 
-        textQuestion2.setText(question2Content);
+        answerQuestion3 = editAnswerQuestion3.getText().toString();
 
-        buttonQuestion3.setOnClickListener(new View.OnClickListener() {
+        buttonFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Question3Fragment question3Fragment = new Question3Fragment();
+                FeedbackFragment feedbackFragment = new FeedbackFragment();
 
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.frameContent, question3Fragment );
+                transaction.replace(R.id.frameContent, feedbackFragment );
 
                 Bundle bundle = new Bundle();
                 bundle.putString("parte_do_curso", part);
                 bundle.putString("resposta_questao_1", answerQuestion1);
                 bundle.putStringArray("resposta_questao_2", answerQuestion2);
-                question3Fragment.setArguments(bundle);
+                bundle.putString("resposta_questao_3", answerQuestion3);
+                feedbackFragment.setArguments(bundle);
 
                 transaction.commit();
 
@@ -126,5 +122,4 @@ public class Question2Fragment extends Fragment {
 
         return v;
     }
-
 }

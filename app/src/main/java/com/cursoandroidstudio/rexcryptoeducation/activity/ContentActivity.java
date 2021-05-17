@@ -1,20 +1,29 @@
 package com.cursoandroidstudio.rexcryptoeducation.activity;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.fragment.CourseFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.fragment.Question1Fragment;
+import com.cursoandroidstudio.rexcryptoeducation.fragment.Question2Fragment;
 
 public class ContentActivity extends AppCompatActivity {
+
+    CourseFragment courseFragment;
+
+    String part;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +34,11 @@ public class ContentActivity extends AppCompatActivity {
 
         //Recuperar dados
         Bundle dados = getIntent().getExtras();
-        String part = dados.getString("parte_do_curso");
+        part = dados.getString("parte_do_curso");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CourseFragment courseFragment = new CourseFragment();
+        courseFragment = new CourseFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString("parte_do_curso", part);
@@ -51,17 +60,64 @@ public class ContentActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Intent intent;
+        String title = String.valueOf(getSupportActionBar().getTitle());
         switch (item.getItemId()) {
             case R.id.action_log_out:
 
-                Intent intent = new Intent(getApplicationContext(), InitialActivity.class);
+                intent = new Intent(getApplicationContext(), InitialActivity.class);
 
                 startActivity( intent );
+                finish();
 
+            case android.R.id.home:
+                if( title.contains("Parte") ) {
+
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    startActivity( intent );
+                    finish();
+
+                }else if( title.equals("Questão 01") ) {
+
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    startActivity(intent);
+                    finish();
+
+                }else if( title.equals("Questão 02") ) {
+
+                    Question1Fragment question1Fragment = new Question1Fragment();
+
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frameContent, question1Fragment );
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parte_do_curso", part);
+                    question1Fragment.setArguments(bundle);
+
+                    transaction.commit();
+
+                }
+                else if ( title.equals("Questão 03") ) {
+
+                    Question2Fragment question2Fragment = new Question2Fragment();
+
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frameContent, question2Fragment );
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parte_do_curso", part);
+                    question2Fragment.setArguments(bundle);
+
+                    transaction.commit();
+
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
 }

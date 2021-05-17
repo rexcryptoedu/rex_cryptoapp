@@ -39,4 +39,9 @@
     <string name="avançar">Avançar</string>
     <string name="responda">Responda</string>
     <string name="sua_resposta">Digite sua resposta aqui</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="questao01">Questão 01</string>
+    <string name="questao02">Questão 02</string>
+    <string name="questao03">Questão 03</string>
+    <string name="voltar_menu">Voltar ao Menu</string>
 </resources>
