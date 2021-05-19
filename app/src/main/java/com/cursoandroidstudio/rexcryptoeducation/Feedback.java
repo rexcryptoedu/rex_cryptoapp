@@ -45,14 +45,14 @@ public class Feedback {
 
         switch (coursePart) {
             case "Parte I":
-                if ( answerQuestion2[0] == "" ) {
+                if ( answerQuestion2[0] == "gasto duplo" && answerQuestion2[1] == "" ) {
                     question2 = true;
                 } else {
                     question2 = false;
                 }
                 break;
             case "Parte II":
-                if ( answerQuestion2[0] == "" ) {
+                if ( answerQuestion2[0] == "Blockchain" && answerQuestion2[1] == "Bitcoin" ) {
                     question2 = true;
                 } else {
                     question2 = false;

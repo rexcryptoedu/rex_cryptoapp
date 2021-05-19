@@ -8,7 +8,7 @@
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="confirme_senha">Confirme a senha</string>
-    <string name="nome_usuario">Nome de usuário</string>
+    <string name="nome_usuario">Nome do usuário</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -44,4 +44,5 @@
     <string name="questao02">Questão 02</string>
     <string name="questao03">Questão 03</string>
     <string name="voltar_menu">Voltar ao Menu</string>
+    <string name="email_usuário">email.usuario@gmail.com</string>
 </resources>

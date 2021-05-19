@@ -31,7 +31,7 @@ public class Question3Fragment extends Fragment {
 
     private String question3Content,answerQuestion3;
 
-    Question3 question3;
+    private Question3 question3;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

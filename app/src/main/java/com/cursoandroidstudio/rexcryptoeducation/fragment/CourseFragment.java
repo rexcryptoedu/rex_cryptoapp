@@ -42,7 +42,7 @@ public class CourseFragment extends Fragment {
     private Handler handler = new Handler();
     private Runnable runnable;
 
-    Course course;
+    private Course course;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

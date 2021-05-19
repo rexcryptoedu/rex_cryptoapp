@@ -37,7 +37,7 @@ public class Question2Fragment extends Fragment {
     private String question2Content;
     private String[] answerQuestion2;
 
-    Question2 question2;
+    private Question2 question2;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,8 +95,6 @@ public class Question2Fragment extends Fragment {
         String part = dados.getString("parte_do_curso");
         String answerQuestion1 = dados.getString("resposta_questao_1");
 
-        answerQuestion2 = editAnswerQuestion2.getText().toString().split(",");
-
         question2 = new Question2();
 
         question2Content =  question2.question2Content(part);
@@ -106,6 +104,8 @@ public class Question2Fragment extends Fragment {
         buttonQuestion3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                answerQuestion2 = editAnswerQuestion2.getText().toString().split(",");
 
                 Question3Fragment question3Fragment = new Question3Fragment();
 

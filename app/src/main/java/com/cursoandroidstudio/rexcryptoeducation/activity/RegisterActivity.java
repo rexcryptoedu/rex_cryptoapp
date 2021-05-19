@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -16,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText editEmailRegister, editPasswordRegister, editConfirmPassword;
 
-    private String email, senha;
+    private String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +37,30 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 email = editEmailRegister.getText().toString();
-                senha = editPasswordRegister.getText().toString();
+                password = editPasswordRegister.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(), Register2Activity.class);
+                if ( !email.isEmpty() ){
+                    if ( !password.isEmpty() ){
 
-                //Passar dados para próxima tela
-                intent.putExtra("email", email);
-                intent.putExtra("senha", senha);
+                        Intent intent = new Intent(getApplicationContext(), Register2Activity.class);
 
-                startActivity( intent );
-                finish();
+                        //Passar dados para próxima tela
+                        intent.putExtra("email", email);
+                        intent.putExtra("senha", password);
+
+                        startActivity( intent );
+                        finish();
+
+                    }else {
+                        Toast.makeText(RegisterActivity.this,
+                                "Preencha o senha!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(RegisterActivity.this,
+                            "Preencha a email!",
+                            Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -53,9 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), InitialActivity.class);
-
-                startActivity( intent );
                 finish();
 
             }

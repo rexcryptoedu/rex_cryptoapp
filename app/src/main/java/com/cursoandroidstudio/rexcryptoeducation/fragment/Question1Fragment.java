@@ -34,7 +34,7 @@ public class Question1Fragment extends Fragment {
     private String question1Content,answerQuestion1;
     private String[] questionAlternatives;
 
-    Question1 question1;
+    private Question1 question1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

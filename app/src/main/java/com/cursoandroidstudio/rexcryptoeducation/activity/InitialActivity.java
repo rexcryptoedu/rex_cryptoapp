@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -28,7 +31,6 @@ public class InitialActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
 
                 startActivity( intent );
-                finish();
 
             }
         });
@@ -40,7 +42,6 @@ public class InitialActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
 
                 startActivity( intent );
-                finish();
 
             }
         });

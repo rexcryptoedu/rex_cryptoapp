@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +33,10 @@ public class FeedbackFragment extends Fragment {
             textIncorrectQuestion1, textIncorrectQuestion2, textIncorrectQuestion3;
     private Button buttonMenu;
 
-    String part, answerQuestion1, answerQuestion3;
-    String[] answerQuestion2;
+    private String part, answerQuestion1, answerQuestion3;
+    private String[] answerQuestion2;
 
-    Feedback feedback;
+    private Feedback feedback;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -111,9 +112,8 @@ public class FeedbackFragment extends Fragment {
         textCorrectFeedback.setText("Você acertou DUAS questões");
         textIncorrectFeedback.setText("Você errou UMA questão");
 
-        //textCorrectQuestion1.setVisibility(v.VISIBLE);
         checkFeedback();
-        textCorrectQuestion2.setVisibility(v.VISIBLE);
+        //textCorrectQuestion2.setVisibility(v.VISIBLE);
         textCorrectQuestion3.setVisibility(v.INVISIBLE);
 
         textIncorrectQuestion1.setVisibility(v.INVISIBLE);
@@ -146,8 +146,17 @@ public class FeedbackFragment extends Fragment {
 
         if (feedback.question1Feedback(part, answerQuestion1) == true) {
             textCorrectQuestion1.setVisibility(v.VISIBLE);
+            textIncorrectQuestion1.setVisibility(v.INVISIBLE);
         } else if (feedback.question1Feedback(part, answerQuestion1) == false) {
             textCorrectQuestion1.setVisibility(v.INVISIBLE);
+            textIncorrectQuestion1.setVisibility(v.VISIBLE);
+        }
+        if (feedback.question2Feedback(part, answerQuestion2) == true) {
+            textCorrectQuestion2.setVisibility(v.VISIBLE);
+            textIncorrectQuestion2.setVisibility(v.INVISIBLE);
+        } else if (feedback.question2Feedback(part, answerQuestion2) == false) {
+            textCorrectQuestion2.setVisibility(v.INVISIBLE);
+            textIncorrectQuestion2.setVisibility(v.VISIBLE);
         }
 
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.cursoandroidstudio.rexcryptoeducation.Question1;
+import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
 import com.cursoandroidstudio.rexcryptoeducation.fragment.CourseFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,18 +13,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
 import com.cursoandroidstudio.rexcryptoeducation.fragment.Question1Fragment;
 import com.cursoandroidstudio.rexcryptoeducation.fragment.Question2Fragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ContentActivity extends AppCompatActivity {
 
     CourseFragment courseFragment;
 
     String part;
+
+    private FirebaseAuth authentication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +70,11 @@ public class ContentActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_log_out:
 
-                intent = new Intent(getApplicationContext(), InitialActivity.class);
-
-                startActivity( intent );
+                authentication = FirebaseConfiguration.getFirebaseAuthentication();
+                authentication.signOut();
+                Log.i("Teste","Entrou");
                 finish();
+                return true;
 
             case android.R.id.home:
                 if( title.contains("Parte") ) {
@@ -78,7 +84,7 @@ public class ContentActivity extends AppCompatActivity {
                     startActivity( intent );
                     finish();
 
-                }else if( title.equals("Questão 01") ) {
+                }if( title.equals("Questão 01") ) {
 
                     intent = new Intent(getApplicationContext(), MainActivity.class);
 

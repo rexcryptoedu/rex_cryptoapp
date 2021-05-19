@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "773294917035",
+    "project_id": "rex-crypto",
+    "storage_bucket": "rex-crypto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773294917035:android:1537dae5d3e0f59d727eee",
+        "android_client_info": {
+          "package_name": "com.cursoandroidstudio.rexcryptoeducation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773294917035-fue7gg26c15j4o439n0rfkigp8esncvg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cursoandroidstudio.rexcryptoeducation",
+            "certificate_hash": "0429151be45b2d474c39f2cab1cd892dc88b026c"
+          }
+        },
+        {
+          "client_id": "773294917035-qrrcrp2b8488i7p4l3m1u0mdhq9e1qvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGsqD-32IeUDe4a-xMXkoF4QlHTrIi1T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773294917035-qrrcrp2b8488i7p4l3m1u0mdhq9e1qvb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

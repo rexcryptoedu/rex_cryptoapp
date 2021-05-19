@@ -2,14 +2,24 @@ package com.cursoandroidstudio.rexcryptoeducation.ui.profile;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
+import com.cursoandroidstudio.rexcryptoeducation.helper.Base64Custom;
+import com.cursoandroidstudio.rexcryptoeducation.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,6 +32,11 @@ public class ProfileFragment extends Fragment {
 
     private EditText editUserNameAlter, editEmailAlter, editPasswordAlter;
     private CircleImageView circleImageUser;
+
+    private DatabaseReference firebaseReference = FirebaseConfiguration.getFirebaseDatabase();
+    private FirebaseAuth authentication = FirebaseConfiguration.getFirebaseAuthentication();
+
+    private String userName, email;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,11 +89,40 @@ public class ProfileFragment extends Fragment {
         editPasswordAlter = v.findViewById(R.id.editPasswordAlter);
         circleImageUser = v.findViewById(R.id.circleImageUser);
 
+        recoverData();
+
         circleImageUser.setImageResource(R.drawable.user);
-        editUserNameAlter.setHint("Nome do usuário");
-        editEmailAlter.setHint("emailcadastrado@gmail.com");
         editPasswordAlter.setHint("senha123");
 
         return v;
     }
+
+    public void recoverData(){
+
+        String userEmail = authentication.getCurrentUser().getEmail();
+        String userId = Base64Custom.base64Code( userEmail );
+        DatabaseReference userReference = firebaseReference.child("user").child( userId );
+
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                User user = snapshot.getValue( User.class );
+
+                userName = user.getUserName();
+                email = user.getEmail();
+
+                editUserNameAlter.setHint(userName);
+                editEmailAlter.setHint(email);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 }
