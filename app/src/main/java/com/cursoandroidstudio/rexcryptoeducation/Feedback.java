@@ -1,5 +1,7 @@
 package com.cursoandroidstudio.rexcryptoeducation;
 
+import android.util.Log;
+
 public class Feedback {
 
     public static boolean question1Feedback(
@@ -39,35 +41,54 @@ public class Feedback {
     }
 
     public static boolean question2Feedback(
-            String coursePart, String[] answerQuestion2) {
+            String coursePart, String answerQuestion2) {
 
+        String[] arrayQuestion2 = answerQuestion2.trim().split(", ");
+        int arraySize = arrayQuestion2.length;
+        System.out.println(arrayQuestion2[0]);
+        System.out.println(arraySize);
         boolean question2 = false;
 
         switch (coursePart) {
             case "Parte I":
-                if ( answerQuestion2[0] == "gasto duplo" && answerQuestion2[1] == "" ) {
+                if ( arrayQuestion2[0].equals("gasto duplo") ) {
                     question2 = true;
                 } else {
                     question2 = false;
                 }
                 break;
             case "Parte II":
-                if ( answerQuestion2[0] == "Blockchain" && answerQuestion2[1] == "Bitcoin" ) {
-                    question2 = true;
+                if ( arraySize > 1 ) {
+                    if (arrayQuestion2[0].equals("Blockchain") && arrayQuestion2[1].equals("Bitcoin")) {
+                        question2 = true;
+                    } else {
+                        question2 = false;
+                    }
                 } else {
                     question2 = false;
                 }
                 break;
             case "Parte III":
-                if ( answerQuestion2[0] == "") {
-                    question2 = true;
-                } else {
-                    question2 = false;
+                if ( arraySize > 1 ) {
+                    if (arrayQuestion2[0].equals("privada") && arrayQuestion2[1].equals("pública")) {
+                        question2 = true;
+                    } else {
+                        question2 = false;
+                    }
+                    break;
                 }
-                break;
         }
 
         return question2;
+
+    }
+
+    public static boolean question3Feedback(
+            String coursePart, String answerQuestion3) {
+
+        boolean question3 = false;
+
+        return question3;
 
     }
 

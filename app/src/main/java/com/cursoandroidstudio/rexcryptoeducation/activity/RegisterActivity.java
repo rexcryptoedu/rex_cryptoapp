@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,8 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button buttonBackInitial, buttonPageRegister2;
-
     private EditText editEmailRegister, editPasswordRegister, editConfirmPassword;
+    private CheckBox checkPasswordRegister;
 
     private String email, password;
 
@@ -31,6 +35,23 @@ public class RegisterActivity extends AppCompatActivity {
         editEmailRegister = findViewById(R.id.editEmailRegister);
         editPasswordRegister = findViewById(R.id.editPasswordRegister);
         editConfirmPassword = findViewById(R.id.editConfirm_Password);
+
+        checkPasswordRegister = findViewById(R.id.checkPasswordRegister);
+
+        checkPasswordRegister.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if ( isChecked ) {
+                    editPasswordRegister.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    editConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    editPasswordRegister.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    editConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
 
         buttonPageRegister2.setOnClickListener(new View.OnClickListener() {
             @Override

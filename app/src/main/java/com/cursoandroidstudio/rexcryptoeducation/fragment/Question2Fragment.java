@@ -34,8 +34,7 @@ public class Question2Fragment extends Fragment {
     private Button buttonQuestion3;
     private EditText editAnswerQuestion2;
 
-    private String question2Content;
-    private String[] answerQuestion2;
+    private String question2Content, answerQuestion2;
 
     private Question2 question2;
 
@@ -105,7 +104,7 @@ public class Question2Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                answerQuestion2 = editAnswerQuestion2.getText().toString().split(",");
+                answerQuestion2 = editAnswerQuestion2.getText().toString();
 
                 Question3Fragment question3Fragment = new Question3Fragment();
 
@@ -116,7 +115,7 @@ public class Question2Fragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("parte_do_curso", part);
                 bundle.putString("resposta_questao_1", answerQuestion1);
-                bundle.putStringArray("resposta_questao_2", answerQuestion2);
+                bundle.putString("resposta_questao_2", answerQuestion2);
                 question3Fragment.setArguments(bundle);
 
                 transaction.commit();

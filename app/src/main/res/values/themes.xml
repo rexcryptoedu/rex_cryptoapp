@@ -21,6 +21,10 @@
         <item name="colorAccent">@color/orange</item>
     </style>
 
+    <style name="ProgressBarStyle">
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
     <style name="Theme.REXCryptoEducation.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

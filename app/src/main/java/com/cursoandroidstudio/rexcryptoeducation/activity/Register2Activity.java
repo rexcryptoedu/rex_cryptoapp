@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
 import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
 import com.cursoandroidstudio.rexcryptoeducation.helper.Base64Custom;
+import com.cursoandroidstudio.rexcryptoeducation.helper.FirebaseLoggedUser;
 import com.cursoandroidstudio.rexcryptoeducation.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,8 +29,8 @@ import org.jetbrains.annotations.NotNull;
 public class Register2Activity extends AppCompatActivity {
 
     private Button buttonRegister, buttonBackRegister;
-
     private EditText editUserName;
+    private ProgressBar progressBarRegister;
 
     private String userName, email, password;
 
@@ -51,6 +53,10 @@ public class Register2Activity extends AppCompatActivity {
 
         editUserName = findViewById(R.id.editUserName);
 
+        progressBarRegister = findViewById(R.id.progressBarRegister);
+
+        progressBarRegister.setVisibility( View.GONE );
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +65,8 @@ public class Register2Activity extends AppCompatActivity {
 
                 //Validar se os campos foram preenchidos
                 if ( !userName.isEmpty() ){
+
+                    progressBarRegister.setVisibility( View.VISIBLE );
 
                     user = new User();
                     user.setUserName( userName );
@@ -100,11 +108,21 @@ public class Register2Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if ( task.isSuccessful() ){
 
-                    String userId = Base64Custom.base64Code( user.getEmail() );
+                    //Salvar dados no firebase
+                    String userId = task.getResult().getUser().getUid();
                     user.setUserId( userId );
                     user.save();
                     finish();
 
+                    //Salvar dados no profile do Firebase
+                    FirebaseLoggedUser.updateUserName( user.getUserName() );
+
+                    /*
+                    String userId = Base64Custom.base64Code( user.getEmail() );
+                    user.setUserId( userId );
+                    user.save();
+                    finish();
+                    */
                     /*
                     Toast.makeText(Register2Activity.this,
                             "Sucesso ao cadastrar usuário!",

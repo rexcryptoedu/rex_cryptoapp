@@ -4,6 +4,9 @@ import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by filip
  */
@@ -24,7 +27,28 @@ public class User {
                 .setValue( this );
     }
 
-    @Exclude
+    public void update(){
+        DatabaseReference firebase = FirebaseConfiguration.getFirebaseDatabase();
+        DatabaseReference user = firebase
+                .child("user")
+                .child( getUserId() );
+
+        Map<String, Object> userValues = convertToMap();
+        user.updateChildren( userValues );
+
+    }
+
+    public Map<String, Object> convertToMap(){
+
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap.put("email", getEmail());
+        userMap.put("userName", getUserName());
+        userMap.put("userId", getUserId());
+
+        return userMap;
+
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -49,7 +73,6 @@ public class User {
         this.email = email;
     }
 
-    @Exclude
     public String getPassword() {
         return password;
     }

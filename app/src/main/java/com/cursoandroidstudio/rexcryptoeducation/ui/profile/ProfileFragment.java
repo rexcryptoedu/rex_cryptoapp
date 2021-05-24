@@ -1,19 +1,28 @@
 package com.cursoandroidstudio.rexcryptoeducation.ui.profile;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
 import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
 import com.cursoandroidstudio.rexcryptoeducation.helper.Base64Custom;
+import com.cursoandroidstudio.rexcryptoeducation.helper.FirebaseLoggedUser;
 import com.cursoandroidstudio.rexcryptoeducation.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +40,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     private EditText editUserNameAlter, editEmailAlter, editPasswordAlter;
+    private CheckBox checkPasswordAlter;
+    private Button buttonSave;
+
     private CircleImageView circleImageUser;
 
     private DatabaseReference firebaseReference = FirebaseConfiguration.getFirebaseDatabase();
     private FirebaseAuth authentication = FirebaseConfiguration.getFirebaseAuthentication();
 
-    private String userName, email;
+    private User loggedUser;
+
+    private String userName, email, password, updatedUserName, updatedEmail,updatedPassword;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,23 +98,80 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //Configurações iniciais
+        loggedUser = FirebaseLoggedUser.getLoggedUserData();
+
+
         editUserNameAlter = v.findViewById(R.id.editUserNameAlter);
         editEmailAlter = v.findViewById(R.id.editEmailAlter);
         editPasswordAlter = v.findViewById(R.id.editPasswordAlter);
+        checkPasswordAlter = v.findViewById(R.id.checkPasswordAlter);
+        buttonSave = v.findViewById(R.id.buttonSave);
+
         circleImageUser = v.findViewById(R.id.circleImageUser);
 
         recoverData();
 
-        circleImageUser.setImageResource(R.drawable.user);
-        editPasswordAlter.setHint("senha123");
+        circleImageUser.setImageResource(R.drawable.user_background);
+
+        editEmailAlter.setFocusable(false);
+        editPasswordAlter.setFocusable(false);
+
+        checkPasswordAlter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if ( isChecked ) {
+                    editPasswordAlter.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    editPasswordAlter.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
+
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updatedUserName = editUserNameAlter.getText().toString();
+                updatedEmail = editEmailAlter.getText().toString();
+                updatedPassword = editPasswordAlter.getText().toString();
+
+                if ( !updatedUserName.isEmpty() ){
+
+                    //Atualizar perfil
+                    FirebaseLoggedUser.updateUserName( updatedUserName );
+
+                    //Atualizar perfil no banco de dados
+                    loggedUser.setUserName( updatedUserName );
+                    loggedUser.update();
+
+                    Toast.makeText(getActivity(),
+                            "Dados alterados com sucesso!",
+                            Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(getActivity(),
+                            "Preencha o nome do usuário!",
+                            Toast.LENGTH_LONG).show();
+                }
+
+
+
+            }
+        });
 
         return v;
     }
 
     public void recoverData(){
 
+        /*
         String userEmail = authentication.getCurrentUser().getEmail();
         String userId = Base64Custom.base64Code( userEmail );
+         */
+        String userId = authentication.getCurrentUser().getUid();
         DatabaseReference userReference = firebaseReference.child("user").child( userId );
 
         userReference.addValueEventListener(new ValueEventListener() {
@@ -111,9 +182,11 @@ public class ProfileFragment extends Fragment {
 
                 userName = user.getUserName();
                 email = user.getEmail();
+                password = user.getPassword();
 
-                editUserNameAlter.setHint(userName);
-                editEmailAlter.setHint(email);
+                editUserNameAlter.setText(userName);
+                editEmailAlter.setText(email);
+                editPasswordAlter.setText(password);
 
             }
 
@@ -123,6 +196,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+         /*
+        FirebaseUser userProfile = FirebaseLoggedUser.getLoggedUser();
+        editUserNameAlter.setText( userProfile.getDisplayName() );
+        editEmailAlter.setText( userProfile.getEmail() );
+        */
+
     }
+
+
 
 }

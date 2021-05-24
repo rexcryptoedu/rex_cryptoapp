@@ -55,7 +55,7 @@
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
         android:hint="@string/senha"
-        android:inputType="textPersonName|textPassword"
+        android:inputType="textPassword"
         android:textColorHint="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,12 +76,29 @@
         android:fontFamily="@font/ubuntu_light"
         android:gravity="center"
         android:hint="@string/confirme_senha"
-        android:inputType="textPersonName|textPassword"
+        android:inputType="textPassword"
         android:textColorHint="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPasswordRegister" />
+
+    <CheckBox
+        android:id="@+id/checkPasswordRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/mostrar_senha"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editConfirm_Password" />
 
     <Button
         android:id="@+id/buttonPageRegister2"
@@ -89,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/custom_button"

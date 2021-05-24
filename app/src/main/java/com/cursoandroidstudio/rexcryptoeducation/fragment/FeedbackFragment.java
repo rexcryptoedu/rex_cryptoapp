@@ -33,8 +33,7 @@ public class FeedbackFragment extends Fragment {
             textIncorrectQuestion1, textIncorrectQuestion2, textIncorrectQuestion3;
     private Button buttonMenu;
 
-    private String part, answerQuestion1, answerQuestion3;
-    private String[] answerQuestion2;
+    private String part, answerQuestion1, answerQuestion2, answerQuestion3;
 
     private Feedback feedback;
 
@@ -89,7 +88,7 @@ public class FeedbackFragment extends Fragment {
         Bundle dados = getArguments();
         part = dados.getString("parte_do_curso");
         answerQuestion1 = dados.getString("resposta_questao_1");
-        answerQuestion2 = dados.getStringArray("resposta_questao_2");
+        answerQuestion2 = dados.getString("resposta_questao_2");
         answerQuestion3 = dados.getString("resposta_questao_3");
 
         textTitle               = v.findViewById(R.id.textTitle);
@@ -106,19 +105,8 @@ public class FeedbackFragment extends Fragment {
 
         buttonMenu  = v.findViewById(R.id.buttonMenu);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Parabéns");
-
-        textTitle.setText("Parabéns!\nVocê foi\nAPROVADO!");
-        textCorrectFeedback.setText("Você acertou DUAS questões");
-        textIncorrectFeedback.setText("Você errou UMA questão");
-
+        checkApproval();
         checkFeedback();
-        //textCorrectQuestion2.setVisibility(v.VISIBLE);
-        textCorrectQuestion3.setVisibility(v.INVISIBLE);
-
-        textIncorrectQuestion1.setVisibility(v.INVISIBLE);
-        textIncorrectQuestion2.setVisibility(v.INVISIBLE);
-        textIncorrectQuestion3.setVisibility(v.VISIBLE);
 
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,12 +139,82 @@ public class FeedbackFragment extends Fragment {
             textCorrectQuestion1.setVisibility(v.INVISIBLE);
             textIncorrectQuestion1.setVisibility(v.VISIBLE);
         }
+
         if (feedback.question2Feedback(part, answerQuestion2) == true) {
             textCorrectQuestion2.setVisibility(v.VISIBLE);
             textIncorrectQuestion2.setVisibility(v.INVISIBLE);
         } else if (feedback.question2Feedback(part, answerQuestion2) == false) {
             textCorrectQuestion2.setVisibility(v.INVISIBLE);
             textIncorrectQuestion2.setVisibility(v.VISIBLE);
+        }
+
+        if (feedback.question3Feedback(part, answerQuestion3) == true) {
+            textCorrectQuestion3.setVisibility(v.VISIBLE);
+            textIncorrectQuestion3.setVisibility(v.INVISIBLE);
+        } else if (feedback.question3Feedback(part, answerQuestion3) == false) {
+            textCorrectQuestion3.setVisibility(v.INVISIBLE);
+            textIncorrectQuestion3.setVisibility(v.VISIBLE);
+        }
+
+    }
+
+    public void checkApproval(){
+
+        if ( feedback.question1Feedback(part, answerQuestion1) == true
+                || feedback.question2Feedback(part, answerQuestion2) == true
+                || feedback.question3Feedback(part, answerQuestion3) == true ) {
+
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Parabéns!");
+
+            textTitle.setText("Parabéns!\nVocê foi\nAPROVADO!");
+
+            if ( feedback.question1Feedback(part, answerQuestion1) == true
+                    && feedback.question2Feedback(part, answerQuestion2) == true
+                        && feedback.question3Feedback(part, answerQuestion3) == true ) {
+
+                textCorrectFeedback.setText("Você acertou TRÊS questões");
+                textIncorrectFeedback.setText("Você errou ZERO questões");
+
+            } else if ( feedback.question1Feedback(part, answerQuestion1) == true
+                        && feedback.question2Feedback(part, answerQuestion2) == true
+                            && feedback.question3Feedback(part, answerQuestion3) == false ||
+                        feedback.question1Feedback(part, answerQuestion1) == true
+                            && feedback.question2Feedback(part, answerQuestion2) == false
+                                && feedback.question3Feedback(part, answerQuestion3) == true ||
+                        feedback.question1Feedback(part, answerQuestion1) == false
+                            && feedback.question2Feedback(part, answerQuestion2) == true
+                                && feedback.question3Feedback(part, answerQuestion3) == true ) {
+
+                textCorrectFeedback.setText("Você acertou DUAS questões");
+                textIncorrectFeedback.setText("Você errou UMA questão");
+
+            } else if ( feedback.question1Feedback(part, answerQuestion1) == true
+                            && feedback.question2Feedback(part, answerQuestion2) == false
+                                && feedback.question3Feedback(part, answerQuestion3) == false ||
+                        feedback.question1Feedback(part, answerQuestion1) == false
+                            && feedback.question2Feedback(part, answerQuestion2) == false
+                                && feedback.question3Feedback(part, answerQuestion3) == true ||
+                        feedback.question1Feedback(part, answerQuestion1) == false
+                            && feedback.question2Feedback(part, answerQuestion2) == true
+                                && feedback.question3Feedback(part, answerQuestion3) == false ) {
+
+                textCorrectFeedback.setText("Você acertou UMA questão");
+                textIncorrectFeedback.setText("Você errou DUAS questões");
+            }
+
+        } else if ( feedback.question1Feedback(part, answerQuestion1) == false
+                        && feedback.question2Feedback(part, answerQuestion2) == false
+                            && feedback.question3Feedback(part, answerQuestion3) == false ) {
+
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("OPS...");
+
+            textTitle.setText("Não foi\nDesta vez!:(");
+
+            textCorrectFeedback.setText("Você acertou ZERO questões");
+            textIncorrectFeedback.setText("Você errou TRÊS questões");
+
         }
 
     }

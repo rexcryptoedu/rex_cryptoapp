@@ -6,9 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
@@ -29,8 +34,9 @@ import org.jetbrains.annotations.NotNull;
 public class LoginActivity extends AppCompatActivity {
 
     private Button buttonLogin, buttonBack;
-
     private EditText editEmail, editPassword;
+    private CheckBox checkPassword;
+    private ProgressBar progressBarLogin;
 
     private String email, password;
 
@@ -49,6 +55,25 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonBack = findViewById(R.id.buttonBack);
 
+        progressBarLogin = findViewById(R.id.progressBarLogin);
+
+        checkPassword = findViewById(R.id.checkPassword);
+
+        progressBarLogin.setVisibility( View.GONE );
+
+        checkPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if ( isChecked ) {
+                    editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if ( !email.isEmpty() ){
                     if ( !password.isEmpty() ){
+
+                        progressBarLogin.setVisibility( v.VISIBLE );
 
                         user = new User();
                         user.setEmail( email );

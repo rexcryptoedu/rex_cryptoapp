@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private ImageView imageUser;
+    private CircleImageView imageUser;
     private TextView textUserName, textEmail;
 
     private DatabaseReference firebaseReference = FirebaseConfiguration.getFirebaseDatabase();
@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_menu, R.id.nav_profile, R.id.nav_about
+                R.id.nav_menu, R.id.nav_profile,
+                R.id.nav_certificate, R.id.nav_about
+
         )
                 .setDrawerLayout(drawer)
                 .build();
@@ -81,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i("CurrentUser", "Usuario não logado!");
         }
 
-        imageUser.setImageResource(R.drawable.profile_picture);
-
+        imageUser.setImageResource(R.drawable.user_background);
 
     }
 
@@ -118,8 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void recoverData(){
 
+        /*
         String userEmail = authentication.getCurrentUser().getEmail();
         String userId = Base64Custom.base64Code( userEmail );
+         */
+        String userId = authentication.getCurrentUser().getUid();
         DatabaseReference userReference = firebaseReference.child("user").child( userId );
 
         userReference.addValueEventListener(new ValueEventListener() {

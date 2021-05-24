@@ -8,7 +8,7 @@
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="confirme_senha">Confirme a senha</string>
-    <string name="nome_usuario">Nome do usuário</string>
+    <string name="nome_usuário">Nome do usuário</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,6 +21,7 @@
     <string name="menu_menu">Menu</string>
     <string name="menu_profile">Perfil</string>
     <string name="menu_contact">Contato</string>
+    <string name="menu_certificate">Certificado</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_audio_configuration">Configuração de áudio</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -45,4 +46,16 @@
     <string name="questao03">Questão 03</string>
     <string name="voltar_menu">Voltar ao Menu</string>
     <string name="email_usuário">email.usuario@gmail.com</string>
+    <string name="senha_usuário">12345</string>
+    <string name="mostrar_senha">Mostrar senha</string>
+    <string name="qual_certificado">Qual certificado você deseja?</string>
+    <string name="certificado_digital">Digital</string>
+    <string name="certificado_impresso">Impresso</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_activity_certificate">CertificateActivity</string>
+    <string name="title_activity_digital_certificate">DigitalCertificateActivity</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="email_envio">Email para envio</string>
+    <string name="telefone">Telefone</string>
+    <string name="parabéns">Parabéns!</string>
 </resources>

@@ -88,7 +88,7 @@ public class Question3Fragment extends Fragment {
         Bundle dados = getArguments();
         String part = dados.getString("parte_do_curso");
         String answerQuestion1 = dados.getString("resposta_questao_1");
-        String[] answerQuestion2 = dados.getStringArray("resposta_questao_2");
+        String answerQuestion2 = dados.getString("resposta_questao_2");
 
         question3 = new Question3();
 
@@ -111,7 +111,7 @@ public class Question3Fragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("parte_do_curso", part);
                 bundle.putString("resposta_questao_1", answerQuestion1);
-                bundle.putStringArray("resposta_questao_2", answerQuestion2);
+                bundle.putString("resposta_questao_2", answerQuestion2);
                 bundle.putString("resposta_questao_3", answerQuestion3);
                 feedbackFragment.setArguments(bundle);
 

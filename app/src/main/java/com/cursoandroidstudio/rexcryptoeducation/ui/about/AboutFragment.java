@@ -85,7 +85,7 @@ public class AboutFragment extends Fragment {
                 .addGroup("Redes sociais")
                 .addFacebook("rex.investments", "Facebook")
                 .addInstagram("rexcryptoedu", "Instagram")
-                .addYoutube("REXInvestimentos", "Youtube")
+                .addYoutube("c/REXInvestimentos", "Youtube")
                 //.addGitHub("rex_cryptoapp", "GitHub")
                 //.addPlayStore("com.facebook.katana", "Download App")
 

@@ -12,15 +12,12 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageUser"
-        android:layout_width="wrap_content"
+        android:layout_width="76dp"
         android:layout_height="76dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:scaleType="fitCenter"
-        android:src="@drawable/profile_picture"/>
+        app:civ_border_color="@color/white" />
+        <!-- app:civ_border_width="4dp" -->
 
     <TextView
         android:id="@+id/textUserName"
@@ -28,7 +25,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/ubuntu_bold"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nome_usuario"
+        android:text="@string/nome_usuário"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="14sp" />
 
