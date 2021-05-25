@@ -90,6 +90,10 @@ public class Register2Activity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
 
+                //Passar dados para próxima tela
+                intent.putExtra("email", email);
+                intent.putExtra("senha", password);
+
                 startActivity( intent );
                 finish();
 
@@ -144,6 +148,8 @@ public class Register2Activity extends AppCompatActivity {
                         exception = "Erro ao cadastrar usuário:" + e.getMessage();
                         e.printStackTrace();
                     }
+
+                    progressBarRegister.setVisibility( View.GONE );
 
                     Toast.makeText(Register2Activity.this,
                             exception,

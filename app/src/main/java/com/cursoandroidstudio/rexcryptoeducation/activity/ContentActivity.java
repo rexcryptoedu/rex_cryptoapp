@@ -126,4 +126,7 @@ public class ContentActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() { }
+
 }

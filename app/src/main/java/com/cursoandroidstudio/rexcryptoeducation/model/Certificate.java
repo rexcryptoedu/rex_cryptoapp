@@ -7,21 +7,21 @@ import com.google.firebase.database.Exclude;
 /**
  * Created by filip
  */
-public class DigitalCertificate {
+public class Certificate {
 
     private String userId;
     private String fullName;
     private String secondaryEmail;
     private String phone;
 
-    public DigitalCertificate() {
+    public Certificate() {
     }
 
     public void save(){
         DatabaseReference firebase = FirebaseConfiguration.getFirebaseDatabase();
         firebase.child("user")
                 .child( this.userId )
-                .child("digital")
+                .child("certificate")
                 .setValue( this );
     }
 

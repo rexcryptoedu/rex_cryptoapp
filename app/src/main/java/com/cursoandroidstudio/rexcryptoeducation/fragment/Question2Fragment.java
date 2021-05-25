@@ -16,12 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.Question2;
 import com.cursoandroidstudio.rexcryptoeducation.R;
 import com.cursoandroidstudio.rexcryptoeducation.activity.InitialActivity;
 import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
+import com.cursoandroidstudio.rexcryptoeducation.activity.Register2Activity;
+import com.cursoandroidstudio.rexcryptoeducation.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,11 +33,11 @@ import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
  */
 public class Question2Fragment extends Fragment {
 
-    private TextView textQuestion2;
+    private TextView textQuestion2, textNotice;
     private Button buttonQuestion3;
     private EditText editAnswerQuestion2;
 
-    private String question2Content, answerQuestion2;
+    private String question2Content, answerQuestion2 = "";
 
     private Question2 question2;
 
@@ -87,6 +90,7 @@ public class Question2Fragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Questão 02");
 
         textQuestion2   = v.findViewById(R.id.textQuestion2);
+        textNotice   = v.findViewById(R.id.textNotice);
         buttonQuestion3 = v.findViewById(R.id.buttonQuestion3);
         editAnswerQuestion2 = v.findViewById(R.id.editAnswerQuestion2);
 
@@ -99,6 +103,7 @@ public class Question2Fragment extends Fragment {
         question2Content =  question2.question2Content(part);
 
         textQuestion2.setText(question2Content);
+        textNotice.setText("AVISO: Se a resposta for mais de uma, separá-la com vírgula (,)");
 
         buttonQuestion3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,13 +117,22 @@ public class Question2Fragment extends Fragment {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.frameContent, question3Fragment );
 
-                Bundle bundle = new Bundle();
-                bundle.putString("parte_do_curso", part);
-                bundle.putString("resposta_questao_1", answerQuestion1);
-                bundle.putString("resposta_questao_2", answerQuestion2);
-                question3Fragment.setArguments(bundle);
+                //Validar se os campos foram preenchidos
+                if ( !answerQuestion2.isEmpty() ){
 
-                transaction.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parte_do_curso", part);
+                    bundle.putString("resposta_questao_1", answerQuestion1);
+                    bundle.putString("resposta_questao_2", answerQuestion2);
+                    question3Fragment.setArguments(bundle);
+
+                    transaction.commit();
+
+                }else {
+                    Toast.makeText(getActivity(),
+                            "Preencha a resposta!",
+                            Toast.LENGTH_LONG).show();
+                }
 
             }
         });

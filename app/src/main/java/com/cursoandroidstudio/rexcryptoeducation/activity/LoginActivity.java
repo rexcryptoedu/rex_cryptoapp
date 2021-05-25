@@ -150,9 +150,13 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+                    progressBarLogin.setVisibility( View.GONE );
+
                     Toast.makeText(LoginActivity.this,
                             exception,
                             Toast.LENGTH_LONG).show();
+
+                    buttonLogin.setEnabled(true);
 
                 }
 

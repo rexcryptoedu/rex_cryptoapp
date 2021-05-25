@@ -5,15 +5,26 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.activity.ConfirmationActivity;
 import com.cursoandroidstudio.rexcryptoeducation.activity.ContentActivity;
-import com.cursoandroidstudio.rexcryptoeducation.activity.DigitalCertificateActivity;
+import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
+import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
+import com.cursoandroidstudio.rexcryptoeducation.fragment.ConfirmationFragment;
+import com.cursoandroidstudio.rexcryptoeducation.model.Certificate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +33,17 @@ import com.cursoandroidstudio.rexcryptoeducation.activity.DigitalCertificateActi
  */
 public class CertificateFragment extends Fragment {
 
-    private Button buttonDigitalCertificate, buttonPrintedCertificate;
+    private EditText editFullName, editDigitalSecondaryEmail, editDigitalPhone;
+    private Button buttonRequestCertificate;
+
+    private ProgressBar progressBarDigital;
+
+    private String fullName, secondaryEmail, phone;
+
+    private DatabaseReference firebaseReference = FirebaseConfiguration.getFirebaseDatabase();
+    private FirebaseAuth authentication = FirebaseConfiguration.getFirebaseAuthentication();
+
+    private Certificate certificate;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,22 +93,74 @@ public class CertificateFragment extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Solicitar Certificado");
 
-        buttonDigitalCertificate = v.findViewById(R.id.buttonDigitalCertificate);
-        buttonPrintedCertificate = v.findViewById(R.id.buttonPrintedCertificate);
+        editFullName = v.findViewById(R.id.editFullName);
+        editDigitalSecondaryEmail = v.findViewById(R.id.editDigitalSecondaryEmail);
+        editDigitalPhone = v.findViewById(R.id.editDigitalPhone);
 
-        buttonDigitalCertificate.setOnClickListener(new View.OnClickListener() {
+        buttonRequestCertificate = v.findViewById(R.id.buttonRequestCertificate);
+
+        progressBarDigital = v.findViewById(R.id.progressBarDigital);
+
+        progressBarDigital.setVisibility( View.GONE );
+
+        buttonRequestCertificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                fullName = editFullName.getText().toString();
+                secondaryEmail = editDigitalSecondaryEmail.getText().toString();
+                phone = editDigitalPhone.getText().toString();
 
-                Intent intent = new Intent(activity.getApplicationContext(), DigitalCertificateActivity.class);
+                if ( !fullName.isEmpty() ){
+                    if ( !secondaryEmail.isEmpty() ){
+                        if ( !secondaryEmail.isEmpty() ){
 
-                activity.startActivity( intent );
+                            progressBarDigital.setVisibility( View.GONE );
+
+                            certificate = new Certificate();
+                            certificate.setFullName( fullName );
+                            certificate.setSecondaryEmail( secondaryEmail );
+                            certificate.setPhone( phone );
+                            registerCertificate();
+
+                            AppCompatActivity activity = (AppCompatActivity)v.getContext();
+
+                            Intent intent = new Intent(activity.getApplicationContext(), ConfirmationActivity.class);
+
+                            activity.startActivity( intent );
+
+                        }else {
+                            Toast.makeText(getActivity(),
+                                    "Preencha o telefone!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        Toast.makeText(getActivity(),
+                                "Preencha o email!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(getActivity(),
+                            "Preencha o nome completo!",
+                            Toast.LENGTH_LONG).show();
+                }
 
             }
         });
 
         return v;
     }
+
+    public void registerCertificate(){
+
+        authentication = FirebaseConfiguration.getFirebaseAuthentication();
+
+        //Salvar dados no firebase
+        String userId = authentication.getCurrentUser().getUid();
+        DatabaseReference userReference = firebaseReference.child("user").child( userId );
+        certificate.setUserId( userId );
+        certificate.save();
+
+    }
+
 }

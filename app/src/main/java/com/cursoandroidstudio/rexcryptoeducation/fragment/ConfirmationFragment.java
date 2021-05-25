@@ -69,20 +69,9 @@ public class ConfirmationFragment extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Parabéns!!!");
 
-        Bundle dados = getArguments();
-        String certificate = dados.getString("certificado");
-
         textConfirmationContent = v.findViewById(R.id.textConfirmationContent);
 
-        if ( certificate.equals("DIGITAL") ) {
-            textConfirmationContent.setText(
-                    "Em breve um membro de nossa equipe irá entrar em contato e enviar o certificado digital solicitado."
-            );
-        } else if ( certificate.equals("IMPRESSO") ) {
-            textConfirmationContent.setText(
-                    "Em breve você receberá o seu certificado no endereço informado. Iremos enviar atualizações referentes ao transporte em seu e-mail. Fique atento!"
-            );
-        }
+        textConfirmationContent.setText("Em breve um membro de nossa equipe irá entrar em contato e enviar o certificado digital solicitado.");
 
         return v;
     }

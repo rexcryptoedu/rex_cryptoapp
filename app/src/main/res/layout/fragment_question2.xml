@@ -87,6 +87,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <TextView
+                    android:id="@+id/textNotice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="TextView"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/editAnswerQuestion2"
                     android:layout_width="match_parent"

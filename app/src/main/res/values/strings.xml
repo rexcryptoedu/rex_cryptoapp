@@ -51,9 +51,8 @@
     <string name="qual_certificado">Qual certificado você deseja?</string>
     <string name="certificado_digital">Digital</string>
     <string name="certificado_impresso">Impresso</string>
-    <string name="title_activity_main2">MainActivity</string>
     <string name="title_activity_certificate">CertificateActivity</string>
-    <string name="title_activity_digital_certificate">DigitalCertificateActivity</string>
+    <string name="title_activity_confirmation">ConfirmationActivity</string>
     <string name="nome_completo">Nome Completo</string>
     <string name="email_envio">Email para envio</string>
     <string name="telefone">Telefone</string>

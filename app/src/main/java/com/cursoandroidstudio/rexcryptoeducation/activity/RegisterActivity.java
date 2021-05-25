@@ -22,12 +22,17 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editEmailRegister, editPasswordRegister, editConfirmPassword;
     private CheckBox checkPasswordRegister;
 
-    private String email, password;
+    private String email, password, confirm_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //Recuperar dados
+        Bundle dados = getIntent().getExtras();
+        email = dados.getString("email");
+        password = dados.getString("senha");
 
         buttonPageRegister2 = findViewById(R.id.buttonPageRegister2);
         buttonBackInitial = findViewById(R.id.buttonBackInitial);
@@ -37,6 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
         editConfirmPassword = findViewById(R.id.editConfirm_Password);
 
         checkPasswordRegister = findViewById(R.id.checkPasswordRegister);
+
+        if ( !email.equals("") && !password.equals("") ) {
+            editEmailRegister.setText(email);
+            editPasswordRegister.setText(password);
+            editConfirmPassword.setText(password);
+        }
 
         checkPasswordRegister.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -59,19 +70,26 @@ public class RegisterActivity extends AppCompatActivity {
 
                 email = editEmailRegister.getText().toString();
                 password = editPasswordRegister.getText().toString();
+                confirm_password = editConfirmPassword.getText().toString();
 
                 if ( !email.isEmpty() ){
                     if ( !password.isEmpty() ){
+                        if ( !confirm_password.isEmpty() ){
 
-                        Intent intent = new Intent(getApplicationContext(), Register2Activity.class);
+                            Intent intent = new Intent(getApplicationContext(), Register2Activity.class);
 
-                        //Passar dados para próxima tela
-                        intent.putExtra("email", email);
-                        intent.putExtra("senha", password);
+                            //Passar dados para próxima tela
+                            intent.putExtra("email", email);
+                            intent.putExtra("senha", password);
 
-                        startActivity( intent );
-                        finish();
+                            startActivity( intent );
+                            finish();
 
+                        }else {
+                            Toast.makeText(RegisterActivity.this,
+                                    "Preencha o confirme a senha!",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }else {
                         Toast.makeText(RegisterActivity.this,
                                 "Preencha o senha!",

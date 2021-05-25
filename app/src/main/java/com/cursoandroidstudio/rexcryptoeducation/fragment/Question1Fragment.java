@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.R;
@@ -31,7 +32,7 @@ public class Question1Fragment extends Fragment {
     private RadioGroup radioGroupQuestion1;
     private Button buttonQuestion2;
 
-    private String question1Content,answerQuestion1;
+    private String question1Content, answerQuestion1 = "";
     private String[] questionAlternatives;
 
     private Question1 question1;
@@ -107,11 +108,11 @@ public class Question1Fragment extends Fragment {
         radioQuestion1C.setText(questionAlternatives[2]);
         radioQuestion1D.setText(questionAlternatives[3]);
 
-        radioButtonQuestion1();
-
         buttonQuestion2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                radioButtonQuestion1();
 
                 Question2Fragment question2Fragment = new Question2Fragment();
 
@@ -119,12 +120,23 @@ public class Question1Fragment extends Fragment {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.frameContent, question2Fragment );
 
-                Bundle bundle = new Bundle();
-                bundle.putString("parte_do_curso", part);
-                bundle.putString("resposta_questao_1", answerQuestion1);
-                question2Fragment.setArguments(bundle);
+                //Validar se os campos foram preenchidos
+                if ( !answerQuestion1.isEmpty() ){
 
-                transaction.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parte_do_curso", part);
+                    bundle.putString("resposta_questao_1", answerQuestion1);
+                    question2Fragment.setArguments(bundle);
+
+                    transaction.commit();
+
+                }else {
+                    Toast.makeText(getActivity(),
+                            "Escolha uma das alternativas!",
+                            Toast.LENGTH_LONG).show();
+                }
+
+
 
             }
         });

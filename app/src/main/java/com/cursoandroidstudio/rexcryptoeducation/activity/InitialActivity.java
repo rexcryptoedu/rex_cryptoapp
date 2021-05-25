@@ -39,7 +39,14 @@ public class InitialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String email = "";
+                String password = "";
+
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+
+                //Passar dados para próxima tela
+                intent.putExtra("email", email);
+                intent.putExtra("senha", password);
 
                 startActivity( intent );
 

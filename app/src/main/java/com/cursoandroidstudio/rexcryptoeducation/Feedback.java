@@ -11,24 +11,24 @@ public class Feedback {
 
         switch (coursePart) {
             case "Parte I":
-                if ( answerQuestion1 == "Satoshi Nakamoto e Hal Finney" ) {
+                if ( answerQuestion1.equals("Satoshi Nakamoto e Hal Finney") ) {
                     question1 = true;
                 } else {
                     question1 = false;
                 }
                 break;
             case "Parte II":
-                if ( answerQuestion1 == "O processo era centralizado, era necessário confiar em " +
-                        "uma terceira parte para intermediar e verificar a transação" ) {
+                if ( answerQuestion1.equals("O processo era centralizado, era necessário confiar em " +
+                        "uma terceira parte para intermediar e verificar a transação") ) {
                     question1 = true;
                 } else {
                     question1 = false;
                 }
                 break;
             case "Parte III":
-                if ( answerQuestion1 == "São carteiras usadas para armazenar e transacionar criptoativos. " +
+                if ( answerQuestion1.equals("São carteiras usadas para armazenar e transacionar criptoativos. " +
                         "A utilização de uma chave pública do destinatário e sua chave privada " +
-                        "é o que torna possível uma transação de Bitcoin dentro do Blockchain") {
+                        "é o que torna possível uma transação de Bitcoin dentro do Blockchain") ) {
                     question1 = true;
                 } else {
                     question1 = false;
@@ -43,7 +43,7 @@ public class Feedback {
     public static boolean question2Feedback(
             String coursePart, String answerQuestion2) {
 
-        String[] arrayQuestion2 = answerQuestion2.trim().split(", ");
+        String[] arrayQuestion2 = answerQuestion2.toLowerCase().trim().split(", ");
         int arraySize = arrayQuestion2.length;
         System.out.println(arrayQuestion2[0]);
         System.out.println(arraySize);
@@ -59,7 +59,7 @@ public class Feedback {
                 break;
             case "Parte II":
                 if ( arraySize > 1 ) {
-                    if (arrayQuestion2[0].equals("Blockchain") && arrayQuestion2[1].equals("Bitcoin")) {
+                    if (arrayQuestion2[0].equals("blockchain") && arrayQuestion2[1].equals("bitcoin")) {
                         question2 = true;
                     } else {
                         question2 = false;

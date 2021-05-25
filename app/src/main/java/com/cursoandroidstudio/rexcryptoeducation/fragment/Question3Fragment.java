@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cursoandroidstudio.rexcryptoeducation.Question2;
 import com.cursoandroidstudio.rexcryptoeducation.Question3;
 import com.cursoandroidstudio.rexcryptoeducation.R;
+import com.cursoandroidstudio.rexcryptoeducation.activity.Register2Activity;
+import com.cursoandroidstudio.rexcryptoeducation.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +32,7 @@ public class Question3Fragment extends Fragment {
     private Button buttonFeedback;
     private EditText editAnswerQuestion3;
 
-    private String question3Content,answerQuestion3;
+    private String question3Content, answerQuestion3 = "";
 
     private Question3 question3;
 
@@ -96,11 +99,13 @@ public class Question3Fragment extends Fragment {
 
         textQuestion3.setText(question3Content);
 
-        answerQuestion3 = editAnswerQuestion3.getText().toString();
+
 
         buttonFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                answerQuestion3 = editAnswerQuestion3.getText().toString();
 
                 FeedbackFragment feedbackFragment = new FeedbackFragment();
 
@@ -108,14 +113,23 @@ public class Question3Fragment extends Fragment {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.frameContent, feedbackFragment );
 
-                Bundle bundle = new Bundle();
-                bundle.putString("parte_do_curso", part);
-                bundle.putString("resposta_questao_1", answerQuestion1);
-                bundle.putString("resposta_questao_2", answerQuestion2);
-                bundle.putString("resposta_questao_3", answerQuestion3);
-                feedbackFragment.setArguments(bundle);
+                //Validar se os campos foram preenchidos
+                if ( !answerQuestion3.isEmpty() ){
 
-                transaction.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parte_do_curso", part);
+                    bundle.putString("resposta_questao_1", answerQuestion1);
+                    bundle.putString("resposta_questao_2", answerQuestion2);
+                    bundle.putString("resposta_questao_3", answerQuestion3);
+                    feedbackFragment.setArguments(bundle);
+
+                    transaction.commit();
+
+                }else {
+                    Toast.makeText(getActivity(),
+                            "Preencha a resposta!",
+                            Toast.LENGTH_LONG).show();
+                }
 
             }
         });
