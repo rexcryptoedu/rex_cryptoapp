@@ -5,10 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +14,6 @@ import android.widget.TextView;
 
 import com.cursoandroidstudio.rexcryptoeducation.Feedback;
 import com.cursoandroidstudio.rexcryptoeducation.R;
-import com.cursoandroidstudio.rexcryptoeducation.activity.ContentActivity;
-import com.cursoandroidstudio.rexcryptoeducation.activity.InitialActivity;
 import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
 
 /**

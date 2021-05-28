@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                email = editEmailRegister.getText().toString();
+                email = editEmailRegister.getText().toString().trim();
                 password = editPasswordRegister.getText().toString();
                 confirm_password = editConfirmPassword.getText().toString();
 
@@ -88,17 +88,17 @@ public class RegisterActivity extends AppCompatActivity {
                         }else {
                             Toast.makeText(RegisterActivity.this,
                                     "Preencha o confirme a senha!",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(RegisterActivity.this,
                                 "Preencha o senha!",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Toast.makeText(RegisterActivity.this,
                             "Preencha a email!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }

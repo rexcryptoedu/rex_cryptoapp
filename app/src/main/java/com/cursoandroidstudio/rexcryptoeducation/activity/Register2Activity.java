@@ -77,7 +77,7 @@ public class Register2Activity extends AppCompatActivity {
                 }else {
                     Toast.makeText(Register2Activity.this,
                             "Preencha o nome!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -153,7 +153,7 @@ public class Register2Activity extends AppCompatActivity {
 
                     Toast.makeText(Register2Activity.this,
                             exception,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                 }
             }

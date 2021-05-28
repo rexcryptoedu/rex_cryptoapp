@@ -34,6 +34,23 @@ public class Feedback {
                     question1 = false;
                 }
                 break;
+            case "Parte IV":
+                if ( answerQuestion1.equals("") ){
+                    question1 = true;
+                } else {
+                   question1 = false;
+                }
+                break;
+            case "Parte V":
+                if ( answerQuestion1.equals("Transações de Bitcoin são verificadas e efetivadas pelo " +
+                        "processo da mineração, sendo que essas transações ficam armazenadas em blocos," +
+                        " dentros do Blockchain, e uma vez verificadas, são inalteráveis") ){
+                    question1 = true;
+                } else {
+                    question1 = false;
+                }
+                break;
+
         }
 
         return question1;
@@ -76,7 +93,16 @@ public class Feedback {
                         question2 = false;
                     }
                     break;
+                } else {
+                    question2 = false;
                 }
+            case "Parte V":
+                if ( arrayQuestion2[0].equals("halving") ){
+                    question2 = true;
+                } else {
+                    question2 = false;
+                }
+                break;
         }
 
         return question2;

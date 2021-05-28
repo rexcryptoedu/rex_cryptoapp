@@ -239,6 +239,10 @@ public class CourseFragment extends Fragment {
             }
         });
 
+        if ( part.equals("Parte IV") || part.equals("Parte V")) {
+            buttonQuestion1.setVisibility(v.GONE);
+        }
+
         buttonQuestion1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

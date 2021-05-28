@@ -55,6 +55,33 @@ public class  FirebaseLoggedUser{
 
     }
 
+    public static void updateEmail(String email, String password){
+
+        try {
+
+            //Usuário logado no App
+            FirebaseUser LoggedUser = getLoggedUser();
+
+            //Configurar objeto para alteração do perfil
+            LoggedUser.updateEmail( email );
+            LoggedUser.updatePassword( password );
+
+            LoggedUser.updateEmail( email ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if( !task.isSuccessful() ){
+                        Log.d("Perfil","Erro ao atualizar email ou senha");
+                    }
+                }
+            });
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
     public static User getLoggedUserData(){
 
         FirebaseUser firebaseUser = getLoggedUser();

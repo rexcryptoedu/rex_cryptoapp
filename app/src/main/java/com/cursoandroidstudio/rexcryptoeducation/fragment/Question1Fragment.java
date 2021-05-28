@@ -3,11 +3,11 @@ package com.cursoandroidstudio.rexcryptoeducation.fragment;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,11 +108,11 @@ public class Question1Fragment extends Fragment {
         radioQuestion1C.setText(questionAlternatives[2]);
         radioQuestion1D.setText(questionAlternatives[3]);
 
+        radioButtonQuestion1();
+
         buttonQuestion2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                radioButtonQuestion1();
 
                 Question2Fragment question2Fragment = new Question2Fragment();
 
@@ -130,13 +130,11 @@ public class Question1Fragment extends Fragment {
 
                     transaction.commit();
 
-                }else {
+                } else {
                     Toast.makeText(getActivity(),
                             "Escolha uma das alternativas!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
-
-
 
             }
         });
@@ -149,14 +147,17 @@ public class Question1Fragment extends Fragment {
         radioGroupQuestion1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 if( checkedId == R.id.radioQuestion1A ){
                     answerQuestion1 = radioQuestion1A.getText().toString();
-                }else if( checkedId == R.id.radioQuestion1B ){
+                }
+                if( checkedId == R.id.radioQuestion1B ){
                     answerQuestion1 = radioQuestion1B.getText().toString();
-                }else if( checkedId == R.id.radioQuestion1C ){
+                }
+                if( checkedId == R.id.radioQuestion1C ){
                     answerQuestion1 = radioQuestion1C.getText().toString();
-                }else if( checkedId == R.id.radioQuestion1D ){
+                }
+                if( checkedId == R.id.radioQuestion1D ){
+                    Log.i("Teste", "Entrou");
                     answerQuestion1 =  radioQuestion1D.getText().toString();
                 }
 

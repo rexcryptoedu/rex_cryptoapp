@@ -103,6 +103,17 @@ public class MenuFragment extends Fragment {
         c = new Course_Part(R.drawable.part3_image, "Parte III", "Segurança do Bitcoin e como armazená-los");
         this.courses.add(c);
 
+        c = new Course_Part(R.drawable.part4_image, "Parte IV", "A criptografia");
+        this.courses.add(c);
+
+        c = new Course_Part(R.drawable.part5_image, "Parte V", "A Evolução da criptografia - Parte I");
+        this.courses.add(c);
+
+        /*
+        c = new Course_Part(R.drawable.part6_image, "Parte VI", "A Evolução da criptografia - Parte II");
+        this.courses.add(c);
+         */
+
     }
 
 }

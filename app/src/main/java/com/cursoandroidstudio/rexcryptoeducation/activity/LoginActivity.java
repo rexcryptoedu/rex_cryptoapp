@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                email = editEmail.getText().toString();
+                email = editEmail.getText().toString().trim();
                 password = editPassword.getText().toString();
 
                 if ( !email.isEmpty() ){
@@ -98,12 +98,12 @@ public class LoginActivity extends AppCompatActivity {
                     }else {
                         Toast.makeText(LoginActivity.this,
                                 "Preencha o senha!",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Toast.makeText(LoginActivity.this,
                             "Preencha a email!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this,
                             exception,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     buttonLogin.setEnabled(true);
 

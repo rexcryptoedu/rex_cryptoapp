@@ -132,17 +132,17 @@ public class CertificateFragment extends Fragment {
                         }else {
                             Toast.makeText(getActivity(),
                                     "Preencha o telefone!",
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(getActivity(),
                                 "Preencha o email!",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Toast.makeText(getActivity(),
                             "Preencha o nome completo!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }

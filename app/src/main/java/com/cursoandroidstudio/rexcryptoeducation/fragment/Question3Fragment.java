@@ -15,11 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cursoandroidstudio.rexcryptoeducation.Question2;
 import com.cursoandroidstudio.rexcryptoeducation.Question3;
 import com.cursoandroidstudio.rexcryptoeducation.R;
-import com.cursoandroidstudio.rexcryptoeducation.activity.Register2Activity;
-import com.cursoandroidstudio.rexcryptoeducation.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -128,7 +125,7 @@ public class Question3Fragment extends Fragment {
                 }else {
                     Toast.makeText(getActivity(),
                             "Preencha a resposta!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -1,16 +1,13 @@
 package com.cursoandroidstudio.rexcryptoeducation.activity;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.config.FirebaseConfiguration;
 import com.cursoandroidstudio.rexcryptoeducation.fragment.CourseFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;

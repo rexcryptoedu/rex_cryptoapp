@@ -16,7 +16,12 @@ public class Question2 {
             case "Parte III":
                 question2 = "A chave _______(1) é usada para a configuração da sua carteira, dando acesso ao dono à propriedade e gerenciamento dos valores. São formadas por um conjunto de 12 palavras aleatórias. Essa chave garante o backup e o controle/acesso dos Bitcoin dentro do Blockchain. Já a chave ________(2) funciona como se fosse o número de conta corrente, seu endereço de conta bancária, que você compartilha com outras pessoas para que elas possam fazer transações com você.\n";
                 break;
-
+            case "Parte IV":
+                question2 = "A criptografia é um pilar fundamental em tecnologias que se baseiam em Blockchain. Para garantir que nenhuma pessoa externa possa acessar os dados, há duas chaves de criptografia: a de chave ________ (1), que gera uma criptografia de hash (função criptografa), que facilita a distribuição de informações, e a de chave ________(2)(secreta), que criptografa e descriptografa informações entre o remetente e destinatário.\n";
+                break;
+            case "Parte V":
+                question2 = "Em maio de 2020 aconteceu o 3º_________, onde, pela terceira vez, a recompensa dos mineradores caiu pela metade. Dessa forma, o Bitcoin fica cada vez mais escasso, valorizando-o e fazendo com que seja necessário ter equipamentos cada vez mais potentes.\n";
+                break;
         }
 
         return question2;

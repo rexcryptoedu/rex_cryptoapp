@@ -44,6 +44,7 @@ public class User {
         userMap.put("email", getEmail());
         userMap.put("userName", getUserName());
         userMap.put("userId", getUserId());
+        userMap.put("password", getPassword());
 
         return userMap;
 

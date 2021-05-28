@@ -16,6 +16,12 @@ public class Question1 {
             case "Parte III":
                 question1 = "O que são e para que servem as carteiras (wallets) de Bitcoin?";
                 break;
+            case "Parte IV":
+                question1 = "Explique o que é criptografia, aplicada em tecnologias que se baseiam em Blockchain";
+                break;
+            case "Parte V":
+                question1 = "Marque a alternativa correta quanto a transações de Bitcoins:";
+                break;
         }
 
         return question1;
@@ -51,7 +57,21 @@ public class Question1 {
                         "São carteiras usadas para armazenar e transacionar criptoativos. A utilização de uma chave pública do destinatário e sua chave privada é o que torna possível uma transação de Bitcoin dentro do Blockchain"
                 };
                 break;
-
+            /*
+            case "Parte IV":
+                alternatives = new String []{
+                "";
+                };
+                break;
+            */
+            case "Parte V":
+                alternatives = new String []{
+                        "Transações de Bitcoin são exatamente iguais a uma transação bancária, sendo necessário inserir as informações corretas e aguardar a autorização e verificação de uma terceira parte, como uma empresa",
+                        "As transações de Bitcoin são verificadas pelo processo da mineração, sendo assim um processo seguro e descentralizado. Porém, as etapas são demoradas para serem concluídas, levando cerca de semanas para terminarem.",
+                        "As transações de Bitcoin são descentralizadas, sendo feitas pelo processo da mineração e do Blockchain, porém são processos que uma vez concluídos, podem ser alterados.",
+                        "Transações de Bitcoin são verificadas e efetivadas pelo processo da mineração, sendo que essas transações ficam armazenadas em blocos, dentros do Blockchain, e uma vez verificadas, são inalteráveis"
+                };
+                break;
         }
 
         return alternatives;

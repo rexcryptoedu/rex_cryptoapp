@@ -1,6 +1,5 @@
 package com.cursoandroidstudio.rexcryptoeducation.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,22 +8,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cursoandroidstudio.rexcryptoeducation.Question1;
 import com.cursoandroidstudio.rexcryptoeducation.Question2;
 import com.cursoandroidstudio.rexcryptoeducation.R;
-import com.cursoandroidstudio.rexcryptoeducation.activity.InitialActivity;
-import com.cursoandroidstudio.rexcryptoeducation.activity.MainActivity;
-import com.cursoandroidstudio.rexcryptoeducation.activity.Register2Activity;
-import com.cursoandroidstudio.rexcryptoeducation.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -131,7 +123,7 @@ public class Question2Fragment extends Fragment {
                 }else {
                     Toast.makeText(getActivity(),
                             "Preencha a resposta!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -4,7 +4,7 @@
     android:id="@+id/cardCourse"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_margin="10dp"
     app:cardElevation="12dp">
 
     <LinearLayout
@@ -30,10 +30,11 @@
 
             <ImageView
                 android:id="@+id/imageCourse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="104dp"
+                android:layout_height="104dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:scaleType="center"
+                android:scaleType="fitCenter"
                 android:visibility="visible"
                 app:srcCompat="@drawable/part1_image" />
         </FrameLayout>

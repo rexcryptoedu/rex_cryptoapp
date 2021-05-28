@@ -114,8 +114,7 @@ public class ProfileFragment extends Fragment {
 
         circleImageUser.setImageResource(R.drawable.user_background);
 
-        editEmailAlter.setFocusable(false);
-        editPasswordAlter.setFocusable(false);
+        //editPasswordAlter.setFocusable(false);
 
         checkPasswordAlter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -142,9 +141,12 @@ public class ProfileFragment extends Fragment {
 
                     //Atualizar perfil
                     FirebaseLoggedUser.updateUserName( updatedUserName );
+                    FirebaseLoggedUser.updateEmail( updatedEmail, updatedPassword);
 
                     //Atualizar perfil no banco de dados
                     loggedUser.setUserName( updatedUserName );
+                    loggedUser.setEmail( updatedEmail );
+                    loggedUser.setPassword( updatedPassword );
                     loggedUser.update();
 
                     Toast.makeText(getActivity(),
@@ -154,7 +156,7 @@ public class ProfileFragment extends Fragment {
                 }else {
                     Toast.makeText(getActivity(),
                             "Preencha o nome do usuário!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -203,7 +205,5 @@ public class ProfileFragment extends Fragment {
         */
 
     }
-
-
 
 }
