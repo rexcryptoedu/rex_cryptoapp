@@ -16,10 +16,10 @@ Para acessar o cronograma [Clique Aqui](https://github.com/rexcryptoedu/rex_cryp
 - [x] MVP - Lista de Funcionalidades
 - [x] Cronograma + Mapa Conhecimento + Matriz habilidade
 - [x] Ambiente de Desenvolvimento
-- [ ] Desenvolvimento da Solução (SPRINT 1)
-- [ ] Desenvolvimento da Solução (SPRINT 2)
-- [ ] Desenvolvimento da Solução (SPRINT 3)
-- [ ] Relatório Final + Video Pitch
+- [x] Desenvolvimento da Solução (SPRINT 1)
+- [x] Desenvolvimento da Solução (SPRINT 2)
+- [x] Desenvolvimento da Solução (SPRINT 3)
+- [x] Relatório Final + Video Pitch
 - [ ] Fechamento do Projeto
 
 ### Equipe
